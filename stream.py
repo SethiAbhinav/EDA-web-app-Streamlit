@@ -148,7 +148,7 @@ if df is not None:
 
             if column_selected != 'None':
                 st.markdown(f"**Filtering the data for : {column_selected}**")
-                task = st.radio("Do what with NaN values?", [ "Fill with mean", "Fill with median", "Fill with mode"])
+                task = st.radio("Do what with NaN values?", [ "Fill with mean", "Fill with median"])
                 if task == "Fill with mean":
 
                     # fill nan values in a column with the columns mean
