@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 import altair as alt
 from pandas_profiling import profile_report
 import base64
-import sklearn
-import sklearn
-from sklearn.model_selection import train_test_split
+import openpyxl
+
 
 st.set_page_config(page_title = "EzDA", 
                     page_icon = ":bar_chart:",
@@ -16,9 +15,6 @@ st.set_page_config(page_title = "EzDA",
 
 main_bg = "background.jpg"
 main_bg_ext = "jpg"
-
-side_bg = "sidebar.jpg"
-side_bg_ext = "jpg"
 
 st.markdown(
     f"""
