@@ -37,7 +37,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 st.title(":red[EzDA]")
-st.text(":blue[A data analytics tool to make EDA simpler than ever!]")
+st.text("A data analytics tool to make EDA simpler than ever!")
 
 
 def get_table_download_link(df):
@@ -69,18 +69,18 @@ if not st.sidebar.checkbox("Begin the EDA-venture"):
     if st.button("What is EDA?"):
         st.info("Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to:\n- Discover patterns\n- Spot anomalies\n- Test hypothesis\n- Check assumptions with the help of summary statistics and graphical representations.")
 else:
-    with st.expander(":black[Upload a file]"):
+    with st.expander("Upload a file"):
         uploaded_file = st.file_uploader("", type=["csv", "xlsx","pkl"])
-        st.markdown(":black[**Note:** Only .csv, .xlsx and .pkl files are supported.]")
+        st.markdown("**Note:** Only .csv, .xlsx and .pkl files are supported.")
         df = load_data()
 
 if df is not None:
     st.sidebar.header("Choose your task")
     task = st.sidebar.selectbox("", ["Data Exploration", "Data Cleaning", "Data Visualization", "Data Profiling"])
     if task == "Data Exploration":
-        with st.expander(":black[Show Data]"):
+        with st.expander(":Show Data"):
             st.dataframe(df)
-        st.subheader(":black[Visualise a column:]")
+        st.subheader("Visualise a column:")
         cols = ['None']
         cols.extend(df.columns)
         plot_col = st.selectbox("Select a column", cols)
@@ -90,13 +90,13 @@ if df is not None:
         x=alt.X(plot_col, bin=alt.Bin(maxbins=20)),
         y='count()'))
         else:
-            st.markdown(":black[**No column selected.**]")
+            st.markdown("**No column selected.**")
     elif task == "Data Cleaning":
         choice = st.sidebar.radio("",["Feature Selection", "Filter Data"])
         if choice == "Feature Selection":
             # multiselect box to chose the columns to remove
             st.subheader("Feature Selection")
-            with st.expander(":black[Show correlation matrix]"):
+            with st.expander("Show correlation matrix"):
                 st.info("How does correlation help in feature selection?\n- Features with high correlation are more linearly dependent.\n- Hence have almost the same effect on the dependent variable.\n- When two features have high correlation, we can drop one of the two features.")
                 st.markdown("A __*correlation matrix*__ (for all applicable columns) has been provided for reference : ")
                 matrix = df.corr()
