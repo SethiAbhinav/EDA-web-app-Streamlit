@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import altair as alt
-from ydata-profiling import ProfileReport
+from ydata_profiling import ProfileReport
 import base64
 import openpyxl
 
