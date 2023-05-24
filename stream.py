@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import altair as alt
-from pandas_profiling import profile_report
+from ydata-profiling import ProfileReport
 import base64
 import openpyxl
 
@@ -195,7 +195,7 @@ if df is not None:
         st.info("The report serves as this excellent EDA tool that can offer the following benefits:\n- Overview\n- Variables\n- Interactions\n- Correlations\n- Missing values\n- A sample of your data.\n")
         if st.button("Generate report"):
             with st.spinner("Creating Profile. May take a while..."):
-                profile = df.profile_report(title="Data Profile")
+                profile = ProfileReport(df, title="Data Profile")
                 profile.config.html.minify_html = False
                 profile.to_file(output_file="data_profile.html")
                 st.markdown("View your data profile from the link below:\n- <a href='http://127.0.0.1:5500/data_profile.html'>Data Profile</a>", unsafe_allow_html=True)
