@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 import altair as alt
 from ydata_profiling import ProfileReport
 import base64
-import openpyxl
-
 
 st.set_page_config(page_title = "EzDA", 
                     page_icon = ":bar_chart:",
@@ -198,43 +196,12 @@ if df is not None:
                 profile = ProfileReport(df, title="Data Profile")
                 profile.config.html.minify_html = False
                 profile.to_file(output_file="data_profile.html")
-                st.markdown("View your data profile from the link below:\n- <a href='http://127.0.0.1:5500/data_profile.html'>Data Profile</a>", unsafe_allow_html=True)
-
-
-# 
-# TODO
-# Add a machine learning component
-
-# # import lazypredict
-# # from lazypredict.Supervised import LazyClassifier
-
-#     elif task == "Trivial Machine Learning":
-#         task_choice = st.sidebar.radio("Select task: ",["Classification", "Regression"])
-#         st.subheader("Trivial Machine Learning")
-#         st.write("Upload cleaned dataset & proceed.")
-#         with st.expander("Show data"):
-#             st.dataframe(df)
-        
-#         # select target column
-#         target = st.selectbox("Choose target column", df.columns)
-
-#         # select columns to use
-#         cols = df.columns
-
-#         # train test split
-#         X_train, X_test, y_train, y_test = train_test_split(df[cols], df[target], test_size=0.2, random_state=42)
-
-#         st.info("The following table provides you with the best(initial, without any advanced data manipulation applied) choice of model for your task.")
-
-#         if task_choice == "Classification":
-#             st.subheader("Basic Machine Learning Classifiers")
-#             clf = LazyClassifier(verbose=0,ignore_warnings=True)
-#             models, predictions = clf.fit(X_train, X_test, y_train, y_test)
-#             st.dataframe(models, high_memory=True)
-
-#         elif task_choice == "Regression":
-#             st.subheader("Basic Machine Learning Regressors")
-#             reg = LazyRegressor(verbose=0,ignore_warnings=True)
-#             models, predictions = reg.fit(X_train, X_test, y_train, y_test)
-#             st.dataframe(models, high_memory=True)
-# 
+                # Provide a download link for the HTML report
+                st.markdown("Here is your generated data profile!")
+                with open(filename, "rb") as file:
+                    btn = st.download_button(
+                        label="Download Data Profile",
+                        data=file,
+                        file_name=filename,
+                        mime="text/html"
+                    )
