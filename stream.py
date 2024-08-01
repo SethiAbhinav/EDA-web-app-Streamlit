@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import altair as alt
 from ydata_profiling import ProfileReport
+import openpyxl
 import base64
 
 st.set_page_config(page_title = "EzDA", 
@@ -194,7 +195,8 @@ if df is not None:
             with st.spinner("Creating Profile. May take a while..."):
                 profile = ProfileReport(df, title="Data Profile")
                 profile.config.html.minify_html = False
-                profile.to_file(output_file="data_profile.html")
+                filename = "data_profile.html"
+                profile.to_file(output_file=filename)
                 # Provide a download link for the HTML report
                 st.markdown("Here is your generated data profile!")
                 with open(filename, "rb") as file:
