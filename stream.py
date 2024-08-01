@@ -51,7 +51,6 @@ def get_table_download_link(df):
     href = f'<a href="data:file/csv;base64,{b64}" download ="cleaned_{filename}.csv">Download csv file</a>'
     return href
 
-@st.cache(allow_output_mutation=True)
 def load_data():
     if uploaded_file is not None:
         if uploaded_file.name.endswith('.csv'):
@@ -62,7 +61,7 @@ def load_data():
             df = pd.read_pickle(uploaded_file)
         return df
 
-if not st.sidebar.checkbox("Begin the EDA-venture"):
+if not st.sidebar.checkbox("Begin the EDA-venture", label_visibility='visible'):
     df =  None
     if st.button("What is EDA?"):
         st.info("Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to:\n- Discover patterns\n- Spot anomalies\n- Test hypothesis\n- Check assumptions with the help of summary statistics and graphical representations.")
